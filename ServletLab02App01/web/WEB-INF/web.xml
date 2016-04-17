@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>MyDownload</servlet-name>
+        <servlet-class>pkg.MyDownload</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyUpload</servlet-name>
+        <servlet-class>pkg.MyUpload</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyDownload</servlet-name>
+        <url-pattern>/MyDownload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyUpload</servlet-name>
+        <url-pattern>/MyUpload</url-pattern>
+    </servlet-mapping>
+    <role rolename="boss"/>
+    <role rolename="Dev"/>
+    <tomcat-users>
+        <role rolename="boss"/>
+        <role rolename="Dev"/>
+        <user password="123" roles="boss" username="karim"/>
+        <user password="test" roles="Dev" username="test"/>
+    </tomcat-users>
+    <security-constraint>
+        <display-name>Constraint1</display-name>
+        <web-resource-collection>
+            <web-resource-name>restricted area</web-resource-name>
+            <description/>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>boss</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>BASIC</auth-method>
+    </login-config>
+    <security-role>
+        <description/>
+        <role-name>boss</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>Dev</role-name>
+    </security-role>
+</web-app>
